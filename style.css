@@ -19,7 +19,6 @@ body {
     width: 100vw;
     overflow: hidden;
     font-family: "Inter", sans-serif;
-    background: #eef1fb;
 }
 
 .theme-icon,
@@ -234,142 +233,11 @@ main {
     border-radius: var(--radius);
 }
 
-.bg-wrapper {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-
-    pointer-events: none;
-
-    transform: translate(var(--mouseX), var(--mouseY));
-
-    transition: transform 4s ease;
-}
-
-.bg-blobs {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-
-    filter: blur(30px) saturate(140%);
-    opacity: 0.85;
-
-    animation: backgroundFloat 30s ease-in-out infinite;
-}
-
-.bg-blobs g:first-of-type {
-    animation:
-        rightBlob 22s ease-in-out infinite alternate,
-        blobOpacity 10s ease-in-out infinite;
-    transform-origin: 100% 0%;
-}
-
-.bg-blobs g:last-of-type {
-    animation:
-        leftBlob 27s ease-in-out infinite alternate,
-        blobOpacity 13s ease-in-out infinite;
-    transform-origin: 0% 100%;
-}
-
 .bg-blobs svg {
-    width: 160%;
-    height: 160%;
-
-    transform-origin: center;
-    will-change: transform;
-}
-
-@keyframes blobOpacity {
-    0% {
-        opacity: 0.62;
-    }
-
-    50% {
-        opacity: 0.82;
-    }
-
-    100% {
-        opacity: 0.68;
-    }
-}
-
-@keyframes backgroundFloat {
-    0% {
-        transform: translate(-2%, -1%) rotate(-4deg) scale(1.02);
-    }
-
-    25% {
-        transform: translate(2%, 1%) rotate(-1deg) scale(1.08);
-    }
-
-    50% {
-        transform: translate(4%, 2%) rotate(3deg) scale(1.12);
-    }
-
-    75% {
-        transform: translate(0%, 4%) rotate(1deg) scale(1.06);
-    }
-
-    100% {
-        transform: translate(-3%, 1%) rotate(-3deg) scale(1.1);
-    }
-}
-
-.bg-blobs path {
-    transform-origin: center;
-}
-
-@keyframes rightBlob {
-    0% {
-        transform: translate(0px, 0px) rotate(-2deg) scale(1);
-    }
-
-    50% {
-        transform: translate(-60px, 25px) rotate(1deg) scale(1.08);
-    }
-
-    100% {
-        transform: translate(40px, -30px) rotate(-1deg) scale(1.03);
-    }
-}
-
-@keyframes leftBlob {
-    0% {
-        transform: translate(0px, 0px) rotate(2deg) scale(1);
-    }
-
-    50% {
-        transform: translate(45px, -20px) rotate(-1deg) scale(1.05);
-    }
-
-    100% {
-        transform: translate(-35px, 25px) rotate(1deg) scale(1.1);
-    }
-}
-
-.glass::before {
-    animation: glassShimmer 8s ease-in-out infinite;
-}
-
-@keyframes glassShimmer {
-    0% {
-        transform: translateX(-120%);
-        opacity: 0.15;
-    }
-
-    50% {
-        opacity: 0.35;
-    }
-
-    100% {
-        transform: translateX(120%);
-        opacity: 0.15;
-    }
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
 }
 
 @keyframes fadeIn {
