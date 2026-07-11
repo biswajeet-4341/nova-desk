@@ -235,8 +235,11 @@ main {
 
 .bg-blobs svg {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 120%;
+    width: 120%;
     display: block;
 }
 

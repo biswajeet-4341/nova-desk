@@ -74,3 +74,49 @@ fetchQuote();
 refreshQuoteButton.addEventListener("click", fetchQuote);
 
 setInterval(fetchQuote, 3600000);
+
+const blobTRs = document.querySelectorAll(".blob-tr");
+const blobBLs = document.querySelectorAll(".blob-bl");
+const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+).matches;
+
+if (blobTRs.length && blobBLs.length && !prefersReducedMotion) {
+    const baseTR = { x: 960, y: 0 };
+    const baseBL = { x: 0, y: 540 };
+
+    const floatAmp = 8; // px, breathing motion
+    const parallaxAmp = 18; // px, mouse reaction
+    const ease = 0.05; // smoothing for mouse follow
+
+    let targetX = 0;
+    let targetY = 0;
+    let smoothX = 0;
+    let smoothY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+        targetX = (e.clientX / window.innerWidth) * 2 - 1;
+        targetY = (e.clientY / window.innerHeight) * 2 - 1;
+    });
+
+    function animateBlobs(time) {
+        smoothX += (targetX - smoothX) * ease;
+        smoothY += (targetY - smoothY) * ease;
+
+        const t = time / 1000;
+        const floatTRx = Math.sin(t * 0.4) * floatAmp;
+        const floatTRy = Math.cos(t * 0.5) * floatAmp;
+        const floatBLx = Math.sin(t * 0.45 + 2) * floatAmp;
+        const floatBLy = Math.cos(t * 0.35 + 2) * floatAmp;
+
+        const trTransform = `translate(${baseTR.x + floatTRx + smoothX * parallaxAmp} ${baseTR.y + floatTRy + smoothY * parallaxAmp})`;
+        const blTransform = `translate(${baseBL.x + floatBLx - smoothX * parallaxAmp} ${baseBL.y + floatBLy - smoothY * parallaxAmp})`;
+
+        blobTRs.forEach((g) => g.setAttribute("transform", trTransform));
+        blobBLs.forEach((g) => g.setAttribute("transform", blTransform));
+
+        requestAnimationFrame(animateBlobs);
+    }
+
+    requestAnimationFrame(animateBlobs);
+}
