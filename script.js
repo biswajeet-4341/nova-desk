@@ -85,9 +85,9 @@ if (blobTRs.length && blobBLs.length && !prefersReducedMotion) {
     const baseTR = { x: 960, y: 0 };
     const baseBL = { x: 0, y: 540 };
 
-    const floatAmp = 8; // px, breathing motion
-    const parallaxAmp = 18; // px, mouse reaction
-    const ease = 0.05; // smoothing for mouse follow
+    const floatAmp = 8;
+    const parallaxAmp = 18;
+    const ease = 0.05;
 
     let targetX = 0;
     let targetY = 0;
@@ -119,4 +119,29 @@ if (blobTRs.length && blobBLs.length && !prefersReducedMotion) {
     }
 
     requestAnimationFrame(animateBlobs);
+}
+
+navigator.geolocation.getCurrentPosition(
+    (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        return fetchWeather(lat, lon);
+    },
+    (error) => {
+        console.log(error);
+    },
+);
+
+async function fetchWeather(lat, lon) {
+    try {
+        const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,surface_pressure,visibility`,
+        );
+        const result = await response.json();
+
+        console.log(result);
+    } catch (error) {
+        console.log(error);
+    }
 }

@@ -300,7 +300,48 @@
                 </div>
             </div>
 
-            <div class="weather glass">weather</div>
+            <div class="weather glass">
+                <div class="weather-top">
+                    <div class="weather-location">
+                        <i class="ri-map-pin-2-fill"></i>
+                        <span id="city-name">Fetching...</span>
+                    </div>
+
+                    <button class="weather-refresh">
+                        <i class="ri-refresh-line"></i>
+                    </button>
+                </div>
+
+                <div class="weather-main">
+                    <img
+                        id="weather-icon"
+                        src="https://openweathermap.org/img/wn/01d@2x.png"
+                        alt="Weather Icon" />
+
+                    <div class="temperature">
+                        <h1 id="temperature">--°</h1>
+
+                        <p id="weather-description">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="weather-info">
+                    <div class="weather-item">
+                        <span>Feels Like</span>
+                        <h4 id="feels-like">--°</h4>
+                    </div>
+
+                    <div class="weather-item">
+                        <span>Humidity</span>
+                        <h4 id="humidity">--%</h4>
+                    </div>
+
+                    <div class="weather-item">
+                        <span>Wind</span>
+                        <h4 id="wind-speed">-- km/h</h4>
+                    </div>
+                </div>
+            </div>
 
             <div class="daily-goals glass">daily-goals</div>
 
