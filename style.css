@@ -167,6 +167,10 @@ main {
     justify-content: space-between;
     color: var(--neutral);
 }
+.time-display {
+    font-size: 3rem;
+    font-weight: 600;
+}
 .date-display {
     color: var(--neutral);
 }
